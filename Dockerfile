@@ -9,11 +9,11 @@ RUN apt-get install -y software-properties-common && \
 RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
     git mercurial subversion
-RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 ENV PATH /opt/conda/bin:$PATH
+RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 ## avoid CI bug for https://github.com/dask/dask-drmaa/pull/57
 RUN conda update --prefix /opt/conda anaconda && \
     conda update -n base conda
