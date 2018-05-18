@@ -18,4 +18,4 @@ RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.
 ENV PATH /opt/conda/bin:$PATH
 RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 ENV CUDA_HOME /usr/local/cuda-9.0
-CMD [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/bash", "-l", "-c", "\"$0\" \"$@\"" ]
