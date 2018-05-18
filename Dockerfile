@@ -16,6 +16,7 @@ ENV PATH /opt/conda/bin:$PATH
 RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 ## avoid CI bug for https://github.com/dask/dask-drmaa/pull/57
 RUN conda update --prefix /opt/conda anaconda && \
-    conda update -n base conda
+    conda update -n base conda && \
+    conda clean --all
 ENV CUDA_HOME /usr/local/cuda-9.0
 CMD [ "/bin/bash" ]
