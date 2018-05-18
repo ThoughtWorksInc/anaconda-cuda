@@ -11,12 +11,11 @@ RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificate
     git mercurial subversion
 RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh
+    rm ~/anaconda.sh && \
+    /opt/conda/bin/conda update -n base conda anaconda && \
+    /opt/conda/bin/conda clean --all
+
 ENV PATH /opt/conda/bin:$PATH
 RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
-## avoid CI bug for https://github.com/dask/dask-drmaa/pull/57
-RUN conda update --prefix /opt/conda anaconda && \
-    conda update -n base conda && \
-    conda clean --all
 ENV CUDA_HOME /usr/local/cuda-9.0
 CMD [ "/bin/bash" ]
