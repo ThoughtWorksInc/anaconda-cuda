@@ -19,3 +19,4 @@ ENV PATH /opt/conda/bin:$PATH
 RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 ENV CUDA_HOME /usr/local/cuda-9.0
 ENTRYPOINT [ "/bin/bash", "-l", "-c", "\"$0\" \"$@\"" ]
+CMD [ "/bin/bash", "-l" ]
