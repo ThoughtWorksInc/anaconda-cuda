@@ -13,7 +13,7 @@ RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
     /opt/conda/bin/conda update -n base conda anaconda && \
-    /opt/conda/bin/conda clean --all
+    /opt/conda/bin/conda clean --all --yes
 
 ENV PATH /opt/conda/bin:$PATH
 RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
