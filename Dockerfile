@@ -15,6 +15,9 @@ RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.
     /opt/conda/bin/conda update -n base conda anaconda && \
     /opt/conda/bin/conda clean --all --yes
 
+# Workaround for https://github.com/conda/conda/issues/6378
+RUN mkdir -p /opt/conda/pkgs/cache && chmod 777 /opt/conda/pkgs/cache 
+
 ENV PATH /opt/conda/bin:$PATH
 RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 ENV CUDA_HOME /usr/local/cuda-9.0
