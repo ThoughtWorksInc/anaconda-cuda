@@ -12,14 +12,13 @@ RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificate
 RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
-    /opt/conda/bin/conda update -n base conda anaconda && \
-    /opt/conda/bin/conda clean --all --yes
+    /opt/conda/bin/conda clean -tipsy && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/bash.bashrc && \
+    echo "conda activate base" >> /etc/bash.bashrc
 
 # Workaround for https://github.com/conda/conda/issues/6378
 RUN mkdir -p /opt/conda/pkgs/cache && chmod --recursive o+rw /opt/conda/pkgs /opt/conda/pkgs/cache 
 
 ENV PATH /opt/conda/bin:$PATH
-RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 ENV CUDA_HOME /usr/local/cuda-9.0
-ENTRYPOINT [ "/bin/bash", "-l", "-c", "\"$0\" \"$@\"" ]
-CMD [ "/bin/bash", "-l" ]
