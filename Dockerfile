@@ -3,5 +3,5 @@ LABEL maintainer "ThoughtWorks <atryyang@thoughtworks.com>"
 
 RUN . /opt/conda/etc/profile.d/conda.sh && \
     conda activate base && \
-    conda install anaconda-project && \
+    conda install -c conda-canary anaconda-project && \
     opt/conda/bin/conda clean -tipsy
