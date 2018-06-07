@@ -1,4 +1,4 @@
-FROM popatry/anaconda-cuda:python3-miniconda4.4.10-cuda9.0-cudnn7-runtime-ubuntu16.04
+FROM popatry/anaconda-cuda:python3-miniconda-cuda9.0-cudnn7-runtime-ubuntu16.04
 LABEL maintainer "ThoughtWorks <atryyang@thoughtworks.com>"
 
 RUN . /opt/conda/etc/profile.d/conda.sh && \
