@@ -17,7 +17,4 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86
     echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/bash.bashrc && \
     echo "conda activate base" >> /etc/bash.bashrc
 
-# Workaround for https://github.com/conda/conda/issues/6378
-RUN mkdir -p /opt/conda/pkgs/cache && chmod --recursive o+rw /opt/conda/pkgs /opt/conda/pkgs/cache 
-
 ENV CUDA_HOME /usr/local/cuda-9.0
